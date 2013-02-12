@@ -1,0 +1,308 @@
+//  CIRRO CUSTOM SASS
+// ----------------------------------------------------------------------------
+
+//@font-face
+//	font-family: "Proxima Nova"
+//	src: url("http://static.tumblr.com/hoglrhc/YC2macdqc/proximanova-regular-webfont.woff") format("woff"), url("http://static.tumblr.com/hoglrhc/noCmacdq1/proximanova-regular-webfont.ttf") format("truetype")
+
+
+//@font-face
+//	font-family: "Proxima Nova Bold"
+//	src: url("http://static.tumblr.com/hoglrhc/xv5mad279/proximanova-bold-webfont.woff") format("woff"), url("http://static.tumblr.com/hoglrhc/DiZmad26l/proximanova-bold-webfont.ttf") format("truetype")
+
+.frame
+	position: fixed
+	z-index: 420
+	&.top
+		top: 0
+		left: 0
+		right: 0
+		height: 10px
+	&.right
+		top: 0
+		bottom: 0
+		right: 0
+		width: 10px
+	&.bottom
+		bottom: 0
+		left: 0
+		right: 0
+		height: 10px
+	&.left
+		top: 0
+		bottom: 0
+		left: 0
+		width: 10px
+
+.social-icon:hover, .permalink:hover, a img:hover
+	filter: alpha(opacity = 85)
+	opacity: .85
+	-webkit-transition: opacity .15s ease-in-out
+	-moz-transition: opacity .15s ease-in-out
+	-o-transition: opacity .15s ease-in-out
+	-ms-transition: opacity .15s ease-in-out
+	transition: opacity .15s ease-in-out
+
+.nav
+	text-align: center
+	margin-left: 0
+	> li
+		display: inline-block
+		*display: inline
+		zoom: 1
+		> a
+			display: inline-block
+			*display: inline
+			zoom: 1
+
+.island
+	display: block
+	> :last-child
+		margin-bottom: 0
+
+.site-header
+	padding: 80px 20px
+	text-align: center
+
+
+.site-title
+	margin-bottom: 0
+	font-size: 24px
+	line-height: 1
+	a
+		border-bottom: none
+		&:hover, &:focus
+			text-decoration: none
+			border-bottom: none
+
+.site-nav
+	a
+		margin: 0 10px
+		font-size: 14px
+		line-height: 24px
+		border-bottom: none
+		&:hover, &:focus
+			text-decoration: none
+
+.social-icon
+	text-indent: -9999px
+	vertical-align: -2px
+
+.facebook
+	width: 16px
+	height: 16px
+	background: url(http://static.tumblr.com/hoglrhc/CKZmacdqw/facebook.png) no-repeat
+
+.twitter
+	width: 17px
+	height: 14px
+	background: url(http://static.tumblr.com/hoglrhc/yGqmacdr5/twitter.png) no-repeat
+
+.site-content
+	padding: 20px 0
+
+#loader
+	width: 16px
+	height: 16px
+	background: transparent url(http://static.tumblr.com/lhq9par/t9Mkzomr6/loader.gif) no-repeat
+
+.post
+	margin: 0 10px 10px 0
+	h2
+		margin-bottom: 15px
+	footer
+		margin-top: 15px
+
+.permalink
+	font-weight: 300
+	
+
+.post
+	&.photo figure img, &.photoset figure iframe, &.video figure iframe
+		vertical-align: bottom
+		max-width: 100%
+		width: 100%
+	&.audio figure
+		img, embed
+			vertical-align: bottom
+			max-width: 100%
+			width: 100%
+	&.photo
+		figure
+			text-align: center
+		footer
+			padding: 5px
+	&.video footer, &.audio footer
+		padding: 5px
+	&.quote blockquote
+		padding-left: 0
+		border-left: none
+		p
+			font-style: italic
+	&.answer h2
+		text-transform: none
+	&.link h2 a:after
+		content: " "
+	&.chat ol
+		margin: 0
+		list-style-type: none
+		
+
+.permalink-page .post
+	float: none
+	width: 100%
+	margin: 0
+	figure, > div
+		margin-bottom: 15px
+	.post-info
+		margin: 30px 0
+		padding-top: 15px
+		border-top: 1px solid #ebebeb
+		color: #b7b7b7
+
+.post-meta
+	float: left
+	margin: 0
+	list-style-type: none
+
+.tags-list
+	display: inline
+
+.tags li
+	&:after
+		content: ",  "
+	&:last-child:after
+		content: ""
+
+.social-buttons
+	float: right
+
+.permalink-page
+	.post h2
+		margin-bottom: 0
+		text-transform: none
+	.post-content
+
+
+.notes
+	margin: 0
+	list-style-type: none
+	li
+		margin-top: 10px
+		&:first-child
+			margin-top: 0
+	.avatar
+		display: inline-block
+		width: 16px
+		height: 16px
+		vertical-align: -4px
+	blockquote
+		margin: 5px 0 0 24px
+		a
+			text-transform: none
+
+.posts-nav
+	margin-top: 30px
+	text-align: right
+	a
+		padding-left: 5px
+
+h1, .alpha
+	font-size: 24px
+
+h2, .beta
+	font-size: 18px
+
+h3, .gamma
+	font-size: 16px
+
+h4, .delta
+	font-size: 14px
+
+h5, .epsilon, h6, .zeta
+	font-size: 12px
+
+a
+	color: #00a99d
+	&:hover, &:focus, &:active
+		text-decoration: none
+		color: #898989
+		-webkit-transition: color .15s ease-in-out
+		-moz-transition: color .15s ease-in-out
+		-o-transition: color .15s ease-in-out
+		-ms-transition: color .15s ease-in-out
+		transition: color .15s ease-in-out
+
+li >
+	ul, ol
+		margin-bottom: 0
+
+q
+	quotes: "" "" "" ""
+	font-style: normal
+	&:before
+		content: ""
+		content: open-quote
+	&:after
+		content: ""
+		content: close-quote
+	q
+		&:before
+			content: ""
+			content: open-quote
+		&:after
+			content: ""
+			content: close-quote
+
+blockquote
+	quotes: "" ""
+	p
+		&:before
+			content: ""
+			content: open-quote
+		&:after
+			content: ""
+			content: no-close-quote
+		&:last-of-type:after
+			content: ""
+			content: close-quote
+	padding-left: 1.5em
+	border-left: 5px solid #eee
+
+.source
+	display: block
+	text-indent: 0
+	margin-top: -9px
+	&:before
+		content: " "
+
+img, object, embed
+	max-width: 100%
+
+img
+	height: auto
+
+.island
+	&:before, &:after
+		content: " "
+		display: table
+
+.cf
+	&:before, &:after
+		content: " "
+		display: table
+
+.island:after, .cf:after
+	clear: both
+
+.island, .cf
+	*zoom: 1
+
+.accessibility
+	position: absolute
+	left: -99999px
+
+#infscr-loading
+	position: absolute
+	right: 0
+	bottom: -20px

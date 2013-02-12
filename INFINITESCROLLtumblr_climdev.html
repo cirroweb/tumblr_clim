@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	
+		<meta charset="UTF-8">
+
+		<title>{Title}{block:PostSummary} &mdash; {PostSummary}{/block:PostSummary}</title>
+
+		{block:Description}<meta name="description" content="{MetaDescription}">{/block:Description}
+
+		<meta name="color:Page Background" content="#fff">
+		<meta name="color:Header Background" content="#ebebeb">
+		<meta name="color:Post Background" content="#ebebeb">
+		<meta name="color:Page Text" content="#363636">
+		<meta name="color:Links" content="#00a99d">
+
+		<meta name="if:Sticky Header" content="1">
+		<meta name="if:Infinite Scrolling" content="0">
+		<meta name="if:Show Share Buttons" content="1">
+		<meta name="if:Show Notes" content="1">
+		<meta name="if:Show Tags" content="1">
+
+		<meta name="text:Disqus Shortname" content="">
+		<meta name="text:Google Analytics ID" content="">
+
+		<meta name="text:Facebook URL" content="">
+		<meta name="text:Twitter URL" content="">
+
+		<link rel="shortcut icon" href="{Favicon}">
+		<link rel="apple-touch-icon" href="{PortraitURL-128}">
+		
+		<link rel="alternate" type="application/rss+xml" href="{RSS}">
+
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/responsive.css">
+		<!-- <link rel="stylesheet" href="http://static.tumblr.com/99tsbpy/SNomhpjw0/main.css"> -->
+		<!-- <link rel="stylesheet" href="http://static.tumblr.com/99tsbpy/fivmhpu27/responsive.css"> -->
+		
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+
+		<style>
+			html {
+				background-color: {color:Page Background};
+				color: {color:Page Text};
+			}
+			a {
+				color: {color:Links};
+			}
+			
+			.site-header {
+				background-color: {color:Header Background};
+				{block:IfStickyHeader}
+					position: fixed;
+				    width: 100%;
+				    z-index: 100;	
+					opacity: 0.85;
+				{/block:IfStickyHeader}
+			}
+			
+			.site-content {
+				background-color: {color:Page Background};
+				{block:IfStickyHeader}
+					padding-top: 84px;
+				{/block:IfStickyHeader}
+			}
+			.post {
+				background-color: {color:Post Background};
+			}
+
+			.permalink-page .photo .post-info {
+				border-color: {color:Header Background};
+			}
+
+			{CustomCSS}
+		</style>
+	</head>
+
+	<body>
+
+		<header class="site-header island">
+				<h1 class="site-title"><a href="/">{Title}</a></h1>
+
+				<nav class="site-nav">
+					<ul class="nav">
+						{block:HasPages}
+							{block:Pages}
+								<li><a href="{URL}">{Label}</a></li>
+							{/block:Pages}
+						{/block:HasPages}
+						<li><a href="/archive">Archive</a></li>
+						{block:SubmissionsEnabled}<li><a href="/submit">{SubmitLabel}</a></li>{/block:SubmissionsEnabled}
+						{block:AskEnabled}<li><a href="/ask">{AskLabel}</a></li>{/block:AskEnabled}
+
+						{block:IfFacebookURL}<li><a class="social-icon facebook" href="{text:Facebook URL}">Facebook</a></li>{/block:IfFacebookURL}
+						{block:IfTwitterURL}<li><a class="social-icon twitter" href="{text:Twitter URL}">Twitter</a></li>{/block:IfTwitterURL}
+					</ul>
+				</nav>
+		</header> <!-- /site-header -->
+
+		<div class="container  site-content">
+				{block:IndexPage}<div id="loader"></div>{/block:IndexPage}
+
+				<section class="posts cf{block:PermalinkPage} permalink-page{/block:PermalinkPage}"{block:IndexPage} id="masonry"{/block:IndexPage}>
+					{block:Posts}
+						<article class="post{block:IndexPage}{block:Text} island{/block:Text}{block:Quote} island{/block:Quote}{block:Answer} island{/block:Answer}{block:Link} island{/block:Link}{block:Chat} island{/block:Chat}{/block:IndexPage} {PostType}{block:Photoset} photoset{/block:Photoset}" id="{PostID}">
+							{block:Text}
+								<div class="post-content">
+									{block:Title}
+										<h2>{Title}</h2>
+									{/block:Title}
+									
+									{Body}
+
+									{block:Date}
+										{block:IndexPage}
+											<footer>
+												<a href="{Permalink}" title="{DayOfWeek}, {DayOfMonth} {Month} {Year}, {24Hour}:{Minutes}:{Seconds}">{TimeAgo}</a>
+
+												<a href="{Permalink}" class="permalink">Permalink</a>
+											</footer>
+										{/block:IndexPage}
+									{/block:Date}
+								</div>
+							{/block:Text}
+
+							{block:Photo}
+								{block:IndexPage}
+									<figure>
+										<a href="{Permalink}" title="Permalink">
+											<img src="{PhotoURL-250}" alt="{PhotoAlt}">
+										</a>
+									</figure>
+								{/block:IndexPage}
+
+								{block:PermalinkPage}
+									<figure>
+										{LinkOpenTag}
+											<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}">
+										{LinkCloseTag}
+									</figure>
+
+									{block:Caption}
+										<div class="post-content">
+											{Caption}
+										</div>
+									{/block:Caption}									
+								{/block:PermalinkPage}
+							{/block:Photo}
+
+							{block:Photoset}
+								{block:IndexPage}
+									<figure>
+										{Photoset-250}
+									</figure>
+
+									{block:Date}
+										<footer>
+											<a href="{Permalink}" class="permalink">Permalink</a>
+										</footer>
+									{/block:Date}
+								{/block:IndexPage}
+
+								{block:PermalinkPage}
+									<figure>
+										{Photoset-700}
+									</figure>
+
+									{block:Caption}
+										<div class="post-content">
+											{Caption}
+										</div>
+									{/block:Caption}
+								{/block:PermalinkPage}
+							{/block:Photoset}
+
+							{block:Quote}
+								<div class="post-content">
+									<blockquote>
+										<p>{Quote}</p>
+
+										{block:Source}
+											<b class="source">{Source}</b>
+										{/block:Source}
+									</blockquote>
+								</div>
+
+								{block:IndexPage}
+									{block:Date}
+										<footer>
+											<a href="{Permalink}" title="{DayOfWeek}, {DayOfMonth} {Month} {Year}, {24Hour}:{Minutes}:{Seconds}">{TimeAgo}</a>
+
+											<a href="{Permalink}" class="permalink">Permalink</a>
+										</footer>
+									{/block:Date}
+								{/block:IndexPage}
+							{/block:Quote}
+
+							{block:Link}
+								<div class="post-content">
+									<h2><a href="{URL}"{Target}>{Name}</a></h2>
+									
+									{block:Description}
+										{Description}
+									{/block:Description}
+								</div>
+
+								{block:IndexPage}
+									{block:Date}
+										<footer>
+											<a href="{Permalink}" title="{DayOfWeek}, {DayOfMonth} {Month} {Year}, {24Hour}:{Minutes}:{Seconds}">{TimeAgo}</a>
+
+											<a href="{Permalink}" class="permalink">Permalink</a>
+										</footer>
+									{/block:Date}
+								{/block:IndexPage}
+							{/block:Link}
+
+							{block:Chat}
+								<div class="post-content">
+									{block:Title}
+										<h2>{Title}</h2>
+									{/block:Title}
+
+									<ol>
+										{block:Lines}
+											<li>
+												{block:Label}
+												    <b>{Label}</b>
+												{/block:Label}
+
+												{Line}
+											</li>
+										{/block:Lines}
+									</ol>
+								</div>
+
+								{block:IndexPage}
+									{block:Date}
+										<footer>
+											<a href="{Permalink}" title="{DayOfWeek}, {DayOfMonth} {Month} {Year}, {24Hour}:{Minutes}:{Seconds}">{TimeAgo}</a>
+
+											<a href="{Permalink}" class="permalink">Permalink</a>
+										</footer>
+									{/block:Date}
+								{/block:IndexPage}
+							{/block:Chat}
+
+							{block:Audio}
+								{block:AudioEmbed}
+									{block:IndexPage}
+										{AudioEmbed-250}
+									{/block:IndexPage}
+
+									{block:PermalinkPage}
+										{AudioEmbed-640}
+									{/block:PermalinkPage}
+								{/block:AudioEmbed}
+
+								{block:AudioPlayer}
+									<figure>
+										{block:AlbumArt}
+											<img src="{AlbumArtURL}" alt="Album Art">
+										{/block:AlbumArt}
+
+										<div class="player">
+											{AudioPlayerBlack}
+										</div>
+
+										{block:ExternalAudio}
+											<a href="{ExternalAudioURL}">Download</a>
+										{/block:ExternalAudio}
+									</figure>
+
+									{block:IndexPage}
+										{block:Date}
+											<footer>
+												<a href="{Permalink}" class="permalink">Permalink</a>
+											</footer>
+										{/block:Date}
+									{/block:IndexPage}
+								{/block:AudioPlayer}
+
+								{block:PermalinkPage}
+									{block:Caption}
+										<div class="post-content">
+											{Caption}
+										</div>
+									{/block:Caption}
+								{/block:PermalinkPage}
+							{/block:Audio}
+
+							{block:Video}
+								{block:IndexPage}
+									<figure>
+										{Video-250}
+									</figure>
+
+									{block:Date}
+										<footer>
+											<a href="{Permalink}" class="permalink">Permalink</a>
+										</footer>
+									{/block:Date}
+								{/block:IndexPage}
+								
+								{block:PermalinkPage}
+									<figure>
+										{Video-700}
+									</figure>
+
+									{block:Caption}
+										<div class="post-content">
+											{Caption}
+										</div>
+									{/block:Caption}
+								{/block:PermalinkPage}
+							{/block:Video}
+
+							{block:Answer}
+								<div class="post-content">
+									<h2>{Asker} asked: <q>{Question}</q></h2>
+									
+									{Answer}
+								</div>
+
+								{block:Date}
+									{block:IndexPage}
+										<footer>
+											<a href="{Permalink}" title="{DayOfWeek}, {DayOfMonth} {Month} {Year}, {24Hour}:{Minutes}:{Seconds}">{TimeAgo}</a>
+
+											<a href="{Permalink}" class="permalink">Permalink</a>
+										</footer>
+									{/block:IndexPage}
+								{/block:Date}
+							{/block:Answer}
+
+							{block:Date}
+								{block:PermalinkPage}
+									<div class="post-info cf">
+										<ul class="post-meta">
+											<li><a href="{Permalink}" title="{DayOfWeek}, {DayOfMonth} {Month} {Year}, {24Hour}:{Minutes}:{Seconds}">{DayOfMonthWithZero}/{MonthNumberWithZero}/{Year}</a></li>
+											{block:NoteCount}<li><a href="{Permalink}">{NoteCountWithLabel}</a></li>{/block:NoteCount}
+											{block:IfShowTags}
+												{block:HasTags}
+													<li class="tags">Tags:
+														<ul class="tags-list nav">
+															{block:Tags}<li><a href="{TagURL}">{Tag}</a></li> {/block:Tags}
+														</ul>
+													</li>
+												{/block:HasTags}
+											{/block:IfShowTags}
+											{block:RebloggedFrom}<li>Reblogged from <a href="{ReblogParentURL}">{ReblogParentName}</a></li>{/block:RebloggedFrom}
+											{block:ContentSource}
+												<li>Source:
+													<a href="{SourceURL}">
+														{block:SourceLogo}
+															<img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}">
+														{/block:SourceLogo}
+
+														{block:NoSourceLogo}
+															{SourceTitle}
+														{/block:NoSourceLogo}
+													</a>
+												</li>
+											{/block:ContentSource}
+										</ul>
+
+										{block:IfShowShareButtons}
+											<div class="social-buttons">
+												<div class="share-button" id="twitter-btn">
+													<a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-url="{Permalink}">Tweet</a>
+												</div>
+
+												<div class="share-button" id="fb-btn">
+													<div id="fb-root"></div>
+													<div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial" data-href="{Permalink}"></div>
+												</div>
+
+												<div class="share-button" id="gplus-btn">
+													<div class="g-plusone" data-size="medium" data-href="{Permalink}"></div>
+												</div>
+
+												<div class="share-button">
+													<a href="http://pinterest.com/pin/create/button/?url={Permalink}&media={PhotoURL-500}" class="pin-it-button" count-layout="horizontal"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a>
+												</div>
+											</div>
+										{/block:IfShowShareButtons}
+									</div>
+								{/block:PermalinkPage}
+							{/block:Date}
+
+							{block:Date}
+								{block:PermalinkPage}
+									{block:IfDisqusShortname}
+										<div class="comments">
+											<div id="disqus_thread"></div>
+										</div>
+									{/block:IfDisqusShortname}
+								{/block:PermalinkPage}
+							{/block:Date}
+							
+							{block:IfShowNotes}
+								{block:PostNotes}
+									<div class="notes-block">
+										{PostNotes}
+									</div>
+								{/block:PostNotes}
+							{/block:IfShowNotes}
+						</article>
+					{/block:Posts}
+				</section> <!-- /posts -->
+				<hr></hr>
+
+				<nav class="posts-nav">
+					{block:PermalinkPagination}
+						{block:PreviousPost}
+							<a href="{PreviousPost}" class="prev">Prev Post</a>
+						{/block:PreviousPost}
+						
+						{block:NextPost}
+							<a href="{NextPost}" class="next">Next Post</a>
+						{/block:NextPost}
+					{/block:PermalinkPagination}
+					
+					{block:Pagination}
+						{block:IfInfiniteScrolling}
+							{block:NextPage}
+								<a href="{NextPage}" class="next">Load more posts</a>
+							{/block:NextPage}
+						{block:IfInfiniteScrolling}
+
+						{block:IfNotInfiniteScrolling}
+							{block:PreviousPage}
+								<a href="{PreviousPage}" class="prev">Prev Page</a>
+							{/block:PreviousPage}
+							
+							{block:NextPage}
+								<a href="{NextPage}" class="next">Next Page</a>
+							{/block:NextPage}
+						{/block:IfNotInfiniteScrolling}
+					{/block:Pagination}
+				</nav> <!-- /posts-nav -->
+		</div> <!-- /site-content -->
+
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script src="http://static.tumblr.com/hoglrhc/Oqzmap7jo/plugins.js"></script>
+
+		<script>
+			$(document).ready(function() {
+
+				// Init
+				//var $container = $('#masonry');
+				var $loader = $('#loader');
+
+				$container.imagesLoaded(function() {
+
+					$container.fadeIn(300);
+					$loader.hide();
+
+					// $container.masonry({
+					// 	itemSelector: '.post',
+					// 	columnWidth: 200,
+					// 	gutterWidth: 10
+
+					// });
+				});
+
+				// If infinite scrolling is checked
+				{block:IfInfiniteScrolling}
+					{block:IndexPage}
+						$container.infinitescroll({
+
+							navSelector  : "nav.posts-nav",
+							nextSelector : "nav.posts-nav a.next",
+							itemSelector : "section.posts article.post",
+							behavior    : "twitter",
+							loading		 : {
+								finishedMsg : 'No more posts to load.',
+								img         : 'http://static.tumblr.com/lhq9par/t9Mkzomr6/loader.gif',
+								msgText     : ''
+							}
+						}, 
+
+						function(newElements) {
+
+							var $newElems = $(newElements).css({ opacity: 0 });
+
+							$newElems.imagesLoaded(function(){
+
+								$newElems.animate({ opacity: 1 });
+
+								$container.masonry('appended', $newElems, true);
+
+							});
+
+							// repair audio players
+							$('.post.audio').each(function() {
+
+								var audioID = $(this).attr('id'),
+									$audioPlayer = $(this).find('.player');
+							    
+							    $.ajax({
+							        url: 'http://' + window.location.host + '/api/read/json?id=' + audioID,
+							        dataType: 'jsonp',
+							        timeout: 50000,
+							        success: function(data) {
+							        	var whitePlayer = data.posts[0]['audio-player'];
+							        	var greyPlayer = whitePlayer.replace('color=FFFFFF', 'color=E3E3E3');
+
+							            $audioPlayer.html(greyPlayer);
+							        }
+							    });
+							});
+
+						});
+
+					{/block:IndexPage}
+				{/block:IfInfiniteScrolling}
+
+				$('.video').fitVids();
+
+			});
+
+			(function(doc, script) {
+
+				var js, 
+				fjs = doc.getElementsByTagName(script)[0],
+				add = function(url, id) {
+					if (doc.getElementById(id)) {return;}
+					js = doc.createElement(script);
+					js.src = url;
+					id && (js.id = id);
+					fjs.parentNode.insertBefore(js, fjs);
+				};
+
+				{block:IfGoogleAnalyticsID}
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', '{text:Google Analytics ID}']);
+					_gaq.push(['_trackPageview']);
+
+					// Google Analytics
+					add(('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js', 'ga');
+				{/block:IfGoogleAnalyticsID}
+
+				{block:IfShowShareButtons}
+					// Twitter
+					add('//platform.twitter.com/widgets.js', 'twitter-wjs');
+
+					// Facebook
+					add('//connect.facebook.net/en_GB/all.js#xfbml=1', 'facebook-jssdk');
+
+					// Google+
+					add('https://apis.google.com/js/plusone.js');
+
+					// Pinterest
+					add('//assets.pinterest.com/js/pinit.js');
+				{/block:IfShowShareButtons}
+
+				{block:PermalinkPage}
+					{block:IfDisqusShortname}
+						var disqus_identifier = '{PostID}';
+						var disqus_url = '{Permalink}';
+						var disqus_title = '{block:PostTitle}{PostTitle}{/block:PostTitle}';
+
+						// Disqus
+						add('http://{text:Disqus Shortname}.disqus.com/embed.js');
+					{/block:IfDisqusShortname}
+				{/block:PermalinkPage}
+
+			}(document, 'script'));
+
+		</script>
+	</body>
+</html>
